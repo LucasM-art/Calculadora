@@ -16,6 +16,9 @@ namespace Calculadora
             int num1;
             int num2;
 
+            bool success;
+            bool success2;
+
             Console.WriteLine("Welcome to the calculator");
 
             Console.WriteLine("Enter the first number: ");
@@ -23,10 +26,17 @@ namespace Calculadora
             Console.WriteLine("Enter the second number: ");
             userInput2 = Console.ReadLine();
 
-            num1 = Int32.Parse(userInput1);
-            num2 = Int32.Parse(userInput2);
+            success = int.TryParse(userInput1, out num1);
+            success2 = int.TryParse(userInput2, out num2);
 
-            Calculate(num1, num2);
+            if (success && success2)
+            {
+                Calculate(num1, num2);
+            }
+            else
+            {
+                Console.WriteLine("Something went wrong, try again");
+            }
 
             Console.Read();
         }
