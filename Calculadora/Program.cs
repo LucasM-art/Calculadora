@@ -8,46 +8,52 @@ namespace Calculadora
 {
     internal class Program
     {
+        static int number1;
+        static int number2;
+        static string sign;
+
+        static string inputOne;
+        static string inputTwo;
         static void Main(string[] args)
         {
-            string userInput1;
-            string userInput2;
-
-            int num1;
-            int num2;
-
             bool success;
             bool success2;
 
             Console.WriteLine("Welcome to the calculator");
 
-            Console.WriteLine("Enter the first number: ");
-            userInput1 = Console.ReadLine();
-            Console.WriteLine("Enter the second number: ");
-            userInput2 = Console.ReadLine();
+            EnterData();
 
-            success = int.TryParse(userInput1, out num1);
-            success2 = int.TryParse(userInput2, out num2);
+            success = int.TryParse(inputOne, out number1);
+            success2 = int.TryParse(inputTwo, out number2);
 
             if (success && success2)
             {
-                Calculate(num1, num2);
+                Calculate(number1, number2);
             }
             else
             {
                 Console.WriteLine("Something went wrong, try again");
+                EnterData();
+                Calculate(number1, number2);
             }
 
             Console.Read();
         }
 
-        public static void Calculate(int num1, int num2)
+        public static void EnterData()
         {
-            string sign;
-            int result;
+            Console.WriteLine("Enter the first number: ");
+            inputOne = Console.ReadLine();
+            Console.WriteLine("Enter the second number: ");
+            inputTwo = Console.ReadLine();
 
             Console.WriteLine("What do you want to do?");
             sign = Console.ReadLine();
+        }
+
+        public static void Calculate(int num1, int num2)
+        {
+            int result;
 
             if (sign.Equals("+"))
             {
